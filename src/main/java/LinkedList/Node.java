@@ -10,13 +10,11 @@ public class Node {
 
 	void append(int data) {
 		Node end = new Node(data);
-		System.out.print(end.next + " ");
 		Node n = this;
 		while (n.next != null) {
 			n = n.next;
 		}
 		n.next = end;
-		System.out.println("여기" + n.next.data);
 	}
 
 	void delete() {
