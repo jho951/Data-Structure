@@ -1,19 +1,16 @@
-plugins {
-    id 'java'
+allprojects {
+    repositories { mavenCentral() }
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+subprojects {
+    group = 'io.github.jho951'
+    version = '0.1.0'
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-test {
-    useJUnitPlatform()
+    // 각 모듈이 'java' 플러그인을 적용했을 때만 공통 세팅 주입
+    plugins.withId('java') {
+        java {
+            toolchain { languageVersion = JavaLanguageVersion.of(17) }
+        }
+        tasks.withType(Test).tap { configureEach { useJUnitPlatform() } }
+    }
 }

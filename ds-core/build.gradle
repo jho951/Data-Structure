@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test { useJUnitPlatform() }
+publishing {
+    publications {
+        create('mavenJava', MavenPublication) {
+            from components.java
+            pom {
+                name = 'ds-core'
+                description = 'Data structures implemented in Java'
+                url = 'https://github.com/jho951/ds-java-lib'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'jho951'
+                        name = 'Jangho Lee'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/jho951/ds-java-lib'
+                }
+            }
+        }
+    }
+}
