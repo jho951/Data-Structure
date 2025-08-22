@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.ConcurrentModificationException;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 동적 배열 기반의 리스트 구현체입니다. (스레드-세이프하지 않음)
  *
@@ -28,7 +30,7 @@ import java.util.ConcurrentModificationException;
  * @param <T> 원소 타입
  */
 public final class ArrayListEx<T> implements MyList<T> {
-	/** 기본 초기 용량 */
+	/** 초기 용량 */
 	private static final int DEFAULT_CAPACITY = 10;
 
 	/** 실제 데이터를 담는 배열(용량 = elements.length) */
@@ -44,22 +46,23 @@ public final class ArrayListEx<T> implements MyList<T> {
 	private int modCount;
 
 	/**
+	 * 초기 용량을 제공하지 않으면, DEFAULT_CAPACITY로 리스트를 생성합니다.
+	 * 기본 용량으로 리스트를 생성합니다.
+	 */
+	public ArrayListEx() {
+		this(DEFAULT_CAPACITY);
+	}
+
+	/**
 	 * 주어진 초기 용량으로 리스트를 생성합니다.
+	 * 너무 적은 용량 시 확장 비용이 잦게 발생하므로, DEFAULT_CAPACITY 이상으로 적용합니다.
 	 *
 	 * @param initialCapacity 0 이상
 	 * @throws IllegalArgumentException 음수 용량 전달 시
 	 */
 	public ArrayListEx(int initialCapacity) {
-		if (initialCapacity < 0) throw new IllegalArgumentException("capacity < 0");
-		// 너무 작은 초기 용량은 잦은 확장 비용을 유발하므로 최소 DEFAULT_CAPACITY 이상으로 보정
+		if (initialCapacity < 0) throw new IllegalArgumentException("초기 용량은 0 이상이여야 합니다.");
 		elements = new Object[Math.max(DEFAULT_CAPACITY, initialCapacity)];
-	}
-
-	/**
-	 * 기본 용량으로 리스트를 생성합니다.
-	 */
-	public ArrayListEx() {
-		this(DEFAULT_CAPACITY);
 	}
 
 	/** {@inheritDoc} */
@@ -71,8 +74,10 @@ public final class ArrayListEx<T> implements MyList<T> {
 	public boolean isEmpty() { return size == 0; }
 
 	/**
-	 * 리스트의 끝(tail)에 원소를 추가합니다.
+	 * 리스트의 끝 쪽에 value를 추가합니다.
 	 * 1) 용량 확인/확장 → 2) tail 위치에 값 대입 → 3) size/modCount 증가
+	 *
+	 * @param value 리스트에 추가될 원소
 	 */
 	@Override
 	public void add(T value) {
@@ -158,12 +163,13 @@ public final class ArrayListEx<T> implements MyList<T> {
 	 * 리스트를 순회하기 위한 반복자를 반환합니다.
 	 * 반복자 생성 시점의 {@code modCount}를 스냅샷으로 저장하고,
 	 * 순회 도중 리스트가 구조적으로 변경되면 {@link ConcurrentModificationException}을 던집니다.
+	 * cursor 다음에 반환할 인덱스
 	 */
 	@Override
-	public Iterator<T> iterator() {
+	public @NotNull Iterator<T> iterator() {
 		final int expected = modCount; // 생성 시점의 수정 횟수
 		return new Iterator<T>() {
-			int cursor = 0; // 다음에 반환할 인덱스
+			int cursor = 0;
 
 			@Override public boolean hasNext() { return cursor < size; }
 
@@ -185,7 +191,7 @@ public final class ArrayListEx<T> implements MyList<T> {
 	 */
 	private void ensureCapacity(int min) {
 		if (min <= elements.length) return;
-		int newCap = Math.max(elements.length + (elements.length >> 1), min); // 1.5배 성장
+		int newCap = Math.max(elements.length + (elements.length >> 1), min);
 		elements = Arrays.copyOf(elements, newCap);
 	}
 
