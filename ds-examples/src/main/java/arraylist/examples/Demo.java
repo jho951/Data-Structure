@@ -1,7 +1,7 @@
-package ArrayList.examples;
+package arraylist.examples;
 
-import ArrayList.Lists;
-import ArrayList.MyList;
+import arraylist.Lists;
+import arraylist.MyList;
 
 
 public class Demo {

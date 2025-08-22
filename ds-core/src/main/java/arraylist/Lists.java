@@ -1,6 +1,6 @@
-package ArrayList;
+package arraylist;
 
-import ArrayList.internal.ArrayListEx;
+import arraylist.internal.ArrayListEx;
 
 /**
  * Factory class to hide implementation details and keep a stable API.

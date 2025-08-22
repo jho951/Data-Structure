@@ -1,4 +1,4 @@
-package ArrayList;
+package arraylist;
 
 import org.junit.jupiter.api.Test;
 
