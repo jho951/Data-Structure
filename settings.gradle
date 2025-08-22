@@ -1,2 +1,2 @@
 rootProject.name = 'DataStructure'
-
+include 'ds-core', 'ds-examples'
