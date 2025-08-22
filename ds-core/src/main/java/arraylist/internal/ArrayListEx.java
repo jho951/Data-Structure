@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.ConcurrentModificationException;
 
-import org.jetbrains.annotations.NotNull;
 
 /**
  * 동적 배열 기반의 리스트 구현체입니다. (스레드-세이프하지 않음)
@@ -166,7 +165,7 @@ public final class ArrayListEx<T> implements MyList<T> {
 	 * cursor 다음에 반환할 인덱스
 	 */
 	@Override
-	public @NotNull Iterator<T> iterator() {
+	public Iterator<T> iterator() {
 		final int expected = modCount; // 생성 시점의 수정 횟수
 		return new Iterator<T>() {
 			int cursor = 0;
