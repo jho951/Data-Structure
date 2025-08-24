@@ -1,4 +1,4 @@
-package arraylist;
+package list;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ConcurrentModificationException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import list.arraylist.ArrayLists;
 
 /**
  * ArrayListEx의 정상/경계/예외 동작을 검증하는 단위 테스트 모음입니다.
@@ -40,7 +42,7 @@ class ArrayListExTest {
 	@Test
 	void addGetInsertSetRemoveClear() {
 		// Given: 비어있는 리스트
-		MyList<Integer> list = Lists.arrayList();
+		MyList<Integer> list = ArrayLists.arrayList();
 		assertTrue(list.isEmpty(), "초기에는 비어 있어야 함");
 
 		// When: 맨 뒤에 1, 2 추가 후, 인덱스 1에 99 삽입 → [1, 99, 2]
@@ -79,7 +81,7 @@ class ArrayListExTest {
 	@DisplayName("경계/예외: 인덱스 범위 체크(get/add/remove)")
 	@Test
 	void bounds() {
-		MyList<String> list = Lists.arrayList();
+		MyList<String> list = ArrayLists.arrayList();
 
 		// 빈 리스트에서 get(0)은 범위 밖 → 예외
 		assertThrows(IndexOutOfBoundsException.class, () -> list.get(0));
@@ -110,7 +112,7 @@ class ArrayListExTest {
 	@DisplayName("반복자 fail-fast: 순회 중 구조 변경 감지")
 	@Test
 	void iteratorFailFast() {
-		MyList<Integer> list = Lists.arrayList();
+		MyList<Integer> list = ArrayLists.arrayList();
 		list.add(1);
 		list.add(2);
 
@@ -137,7 +139,7 @@ class ArrayListExTest {
 	@DisplayName("성장 정책: 대량 추가 시 확장 & 데이터 무결성")
 	@Test
 	void growth() {
-		MyList<Integer> list = Lists.arrayList(1); // 아주 작은 초기 용량으로 시작
+		MyList<Integer> list = ArrayLists.arrayList(1); // 아주 작은 초기 용량으로 시작
 
 		// 0 ~ 999까지 1000개 추가 → 여러 번 확장될 것
 		for (int i = 0; i < 1_000; i++) {
