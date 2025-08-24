@@ -1,6 +1,7 @@
-package arraylist;
+package list.arraylist;
 
-import arraylist.internal.ArrayListEx;
+import list.MyList;
+import list.arraylist.internal.ArrayListEx;
 
 /**
  * 안정적인 생성 API(정적 팩토리 메서드)만 외부에 제공하는 유틸 클래스입니다.
@@ -15,9 +16,9 @@ import arraylist.internal.ArrayListEx;
  * <p><strong>반환 타입</strong>은 항상 {@code MyList<T>}입니다.
  * 내부 구현체(현재는 {@code ArrayListEx})로 생성하되, 외부에는 노출하지 않는 것을 권장합니다.
  */
-public final class Lists {
+public final class ArrayLists {
 	/** 인스턴스화 금지(유틸 클래스) */
-	private Lists() {}
+	private ArrayLists() {}
 
 	/**
 	 * 기본 용량으로 배열 기반 리스트를 생성합니다.

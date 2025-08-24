@@ -1,6 +1,6 @@
-package arraylist.internal;
+package list.arraylist.internal;
 
-import arraylist.MyList;
+import list.MyList;
 
 import java.util.Arrays;
 import java.util.Iterator;
