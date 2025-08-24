@@ -1,6 +1,6 @@
 package linear.list.arraylist;
 
-import list.MyList;
+import linear.list.MyList;
 import linear.list.arraylist.internal.ArrayListEx;
 
 /**

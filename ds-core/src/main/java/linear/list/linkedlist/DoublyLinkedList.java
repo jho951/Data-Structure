@@ -1,14 +1,14 @@
 package linear.list.linkedlist;
 
-import list.MyList;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import linear.list.MyList;
+
 /**
  * 양방향 링크드 리스트 (Doubly Linked List)
- *
  * 특징:
  * - head <-> ... <-> tail 양방향 연결
  * - 양끝 삽입/삭제 O(1)

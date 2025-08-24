@@ -3,7 +3,6 @@ package linear.list;
 import linear.list.arraylist.internal.ArrayListEx;
 import linear.list.linkedlist.internal.DoublyLinkedListEx;
 import linear.list.linkedlist.internal.SinglyLinkedListEx;
-import list.MyList;
 
 public final class Lists {
 	private Lists() {}

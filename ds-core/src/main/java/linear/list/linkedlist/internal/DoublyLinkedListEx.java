@@ -4,7 +4,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import list.MyList;
+import linear.list.MyList;
 
 /**
  * 양방향 연결 리스트 (Doubly Linked List)

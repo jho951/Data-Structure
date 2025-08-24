@@ -1,4 +1,4 @@
-package list;
+package linear;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +7,7 @@ import java.util.ConcurrentModificationException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import linear.list.MyList;
 import linear.list.arraylist.ArrayLists;
 
 /**
