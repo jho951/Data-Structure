@@ -1,4 +1,4 @@
-package list.linkedlist;
+package linear.list.linkedlist;
 
 import list.MyList;
 

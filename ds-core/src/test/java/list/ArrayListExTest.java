@@ -7,7 +7,7 @@ import java.util.ConcurrentModificationException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import list.arraylist.ArrayLists;
+import linear.list.arraylist.ArrayLists;
 
 /**
  * ArrayListEx의 정상/경계/예외 동작을 검증하는 단위 테스트 모음입니다.

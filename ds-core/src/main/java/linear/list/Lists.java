@@ -1,8 +1,9 @@
-package list;
+package linear.list;
 
-import list.arraylist.internal.ArrayListEx;
-import list.linkedlist.internal.DoublyLinkedListEx;
-import list.linkedlist.internal.SinglyLinkedListEx;
+import linear.list.arraylist.internal.ArrayListEx;
+import linear.list.linkedlist.internal.DoublyLinkedListEx;
+import linear.list.linkedlist.internal.SinglyLinkedListEx;
+import list.MyList;
 
 public final class Lists {
 	private Lists() {}

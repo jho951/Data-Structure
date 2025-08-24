@@ -1,4 +1,4 @@
-package list.linkedlist.internal;
+package linear.list.linkedlist.internal;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;

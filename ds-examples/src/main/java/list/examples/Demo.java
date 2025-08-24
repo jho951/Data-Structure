@@ -1,6 +1,6 @@
 package list.examples;
 
-import list.Lists;
+import linear.list.Lists;
 import list.MyList;
 
 

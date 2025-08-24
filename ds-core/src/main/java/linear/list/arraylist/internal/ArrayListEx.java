@@ -1,4 +1,4 @@
-package list.arraylist.internal;
+package linear.list.arraylist.internal;
 
 import list.MyList;
 

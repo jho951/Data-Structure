@@ -1,7 +1,7 @@
-package list.arraylist;
+package linear.list.arraylist;
 
 import list.MyList;
-import list.arraylist.internal.ArrayListEx;
+import linear.list.arraylist.internal.ArrayListEx;
 
 /**
  * 안정적인 생성 API(정적 팩토리 메서드)만 외부에 제공하는 유틸 클래스입니다.
