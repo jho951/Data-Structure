@@ -17,6 +17,9 @@ public class Demo {
 		c.add(1);
 		MyStack<Integer> d = new StackEx<>();
 		d.push(1);
-		MyQueue<Integer> e = Queues.array();
-    }
+		MyQueue<Integer> q1 = Queues.array();
+		q1.enqueue(1);
+		MyQueue<Integer> q2 = Queues.linked();
+		q2.enqueue(10);
+	}
 }

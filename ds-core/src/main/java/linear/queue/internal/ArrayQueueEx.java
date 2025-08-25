@@ -22,7 +22,7 @@ import java.util.ConcurrentModificationException;
  * - null 허용 (정책상 허용)
  * - 스레드-세이프 아님
  */
-public final class QueueEx<T> implements MyQueue<T> {
+public final class ArrayQueueEx<T> implements MyQueue<T> {
 
 	private static final int DEFAULT_CAPACITY = 8;
 	private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
@@ -33,11 +33,11 @@ public final class QueueEx<T> implements MyQueue<T> {
 	private int size;
 	private int modCount;  // 구조 변경 횟수 (fail-fast)
 
-	public QueueEx() {
+	public ArrayQueueEx() {
 		this.elements = new Object[DEFAULT_CAPACITY];
 	}
 
-	public QueueEx(int initialCapacity) {
+	public ArrayQueueEx(int initialCapacity) {
 		if (initialCapacity < 0) throw new IllegalArgumentException("capacity < 0");
 		int cap = Math.max(initialCapacity, DEFAULT_CAPACITY);
 		this.elements = new Object[cap];

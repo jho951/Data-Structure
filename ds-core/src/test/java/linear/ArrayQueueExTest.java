@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * - 예외 케이스 (빈 큐에서 dequeue/peek, iterator fail-fast)
  * - 대량 데이터 일관성(size/순서)
  */
-public class QueueExTest {
+public class ArrayQueueExTest {
 
 	private MyQueue<Integer> queue;
 
