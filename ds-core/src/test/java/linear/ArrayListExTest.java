@@ -1,4 +1,4 @@
-package list;
+package linear;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,8 @@ import java.util.ConcurrentModificationException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import list.arraylist.ArrayLists;
+import linear.list.MyList;
+import linear.list.arraylist.ArrayLists;
 
 /**
  * ArrayListEx의 정상/경계/예외 동작을 검증하는 단위 테스트 모음입니다.

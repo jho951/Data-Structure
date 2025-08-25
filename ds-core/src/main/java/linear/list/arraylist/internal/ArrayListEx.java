@@ -1,11 +1,11 @@
-package list.arraylist.internal;
-
-import list.MyList;
+package linear.list.arraylist.internal;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.ConcurrentModificationException;
+
+import linear.list.MyList;
 
 /**
  * 동적 배열 기반의 리스트 구현체입니다. (스레드-세이프하지 않음)

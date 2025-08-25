@@ -1,10 +1,11 @@
-package list.linkedlist;
+package linear.list.linkedlist;
 
-import list.MyList;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import linear.list.MyList;
 
 /**
  * 단방향 링크드 리스트 구현체
