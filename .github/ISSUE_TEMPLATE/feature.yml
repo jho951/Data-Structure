@@ -10,23 +10,124 @@ body:
     attributes:
       value: |
         ### 설명
-        ❗️ 작업한 기능을 작성해주세요.
+        ❗️ 작업하려는 기능/개선을 간단히 소개해주세요.
 
   - type: textarea
     id: summary
     attributes:
       label: 기능 설명
-      description: 어떤 기능을 제안하시나요?
-      placeholder: 여기에 설명을 입력하세요
+      description: 어떤 기능을 제안하시나요? (핵심 목적, 주요 동작, 사용자 영향 등)
+      placeholder: 여기에 기능 설명을 입력하세요
     validations:
       required: true
 
   - type: textarea
-    id: reason
+    id: why
     attributes:
-      label: 필요한 이유
-      description: 왜 이 기능이 필요한가요?
-      placeholder: 사용자의 요구나 문제점을 설명해주세요
+      label: 배경/목적 (Why)
+      description: 이 기능이 필요한 이유, 해결하려는 문제, 기대 효과를 작성해주세요.
+      placeholder: 예) 학습/사용성 향상, 성능 개선, 유지보수성 향상 등
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: 요구사항 (What)
+      description: 인터페이스/API, 필수 동작, 비기능 요구사항을 항목별로 적어주세요.
+      placeholder: |
+        - 인터페이스/메서드:
+        - 동작 흐름:
+        - 비기능(성능, 보안 등):
+    validations:
+      required: true
+
+  - type: textarea
+    id: spec
+    attributes:
+      label: 상세 설계 (Spec)
+      description: 내부 구조, 데이터 모델, 예외 정책, 복잡도(시간/공간) 등을 구체적으로 작성해주세요.
+      placeholder: |
+        - 패키지/클래스:
+        - 필드/불변식:
+        - 알고리즘/복잡도:
+        - 예외/정책:
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 수용 기준 (Acceptance Criteria)
+      description: 완료로 판단할 수 있는 체크리스트를 작성해주세요.
+      placeholder: |
+        - [ ] 핵심 시나리오 A 동작
+        - [ ] 성능/복잡도 기준 만족
+        - [ ] 예외 처리 및 문서화 완료
+    validations:
+      required: true
+
+  - type: textarea
+    id: testplan
+    attributes:
+      label: 테스트 계획 (Test Plan)
+      description: 단위/통합 테스트 시나리오, 경계/에러 케이스를 적어주세요.
+      placeholder: |
+        - 정상 흐름:
+        - 경계/에러:
+        - 성능/회귀:
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: risks
+    attributes:
+      label: 리스크/유의사항
+      description: 해당되는 항목을 선택하거나 아래의 추가 입력에서 자세히 설명해주세요.
+      options:
+        - label: 성능 저하 가능성
+        - label: 스레드 안전성 영향
+        - label: 호환성/브레이킹 체인지 가능성
+        - label: 보안/권한 이슈 가능성
+    validations:
+      required: false
+
+  - type: textarea
+    id: risk_detail
+    attributes:
+      label: 리스크 상세
+      description: 선택한 리스크에 대한 완화책/대응 방안을 적어주세요.
+      placeholder: 예) 확장 시 O(n) 복사 비용 → 배치 시간대 실행, 지표 모니터링 추가
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      description: 작업 우선순위를 선택하세요.
+      options:
+        - P0 (긴급)
+        - P1 (높음)
+        - P2 (보통)
+        - P3 (낮음)
+      default: 2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영역/모듈
+      description: 관련 영역을 선택하세요.
+      options:
+        - core
+        - api
+        - datastructure
+        - ui
+        - docs
+        - infra
+      default: 2
     validations:
       required: true
 
@@ -34,7 +135,29 @@ body:
     id: reference
     attributes:
       label: 참고 자료
-      description: 관련 문서나 링크가 있다면 적어주세요
+      description: 관련 문서나 링크가 있다면 적어주세요.
       placeholder: https://...
+    validations:
+      required: false
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: 작업 항목 (Checklist)
+      description: 세부 태스크를 체크리스트로 나열해주세요.
+      placeholder: |
+        - [ ] 인터페이스 정의
+        - [ ] 구현/리팩토링
+        - [ ] 테스트 추가
+        - [ ] 문서화
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 비고/추가 컨텍스트
+      description: 기타 공유할 내용이 있다면 작성해주세요.
+      placeholder: 스크린샷, 다이어그램, 의사결정 기록 등
     validations:
       required: false

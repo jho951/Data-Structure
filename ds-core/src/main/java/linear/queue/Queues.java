@@ -12,7 +12,7 @@ public final class Queues {
 	}
 
 	/** 초기 용량 지정 */
-	public static <T> MyQueue<T> array(int initialCapacity) {
+	public static <T> MyQueue<T> arrayBlocking(int initialCapacity) {
 		return new ArrayQueueEx<>(initialCapacity);
 	}
 
