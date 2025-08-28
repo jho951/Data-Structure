@@ -189,16 +189,13 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 	 * - 현재는 단순히 instanceof로만 확인합니다.
 	 * - <b>개선 여지</b>: 서로 다른 트리의 Position 혼용 방지 위해 ownerId/removed 플래그 등을 GeneralNode에 두고 검증 가능
 	 */
-	@SuppressWarnings("unchecked")
 	private GeneralNode<T> cast(Position<T> p) {
-		if (!(p instanceof GeneralNode))
+		if (!(p instanceof GeneralNode<T> node))
 			throw new IllegalArgumentException("잘못된 Position: 이 구현의 노드가 아닙니다.");
 
-		GeneralNode<T> node = (GeneralNode<T>) p;
 		// 🔒 핵심: 다른 트리의 Position 혼용 방지
 		if (node.ownerToken != this.ownerToken)
 			throw new IllegalArgumentException("잘못된 Position: 다른 트리에서 생성된 Position입니다.");
-
 		return node;
 	}
 
