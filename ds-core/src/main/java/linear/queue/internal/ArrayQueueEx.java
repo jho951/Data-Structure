@@ -68,7 +68,6 @@ public final class ArrayQueueEx<T> implements MyQueue<T> {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public T peek() {
 		if (isEmpty()) throw new NoSuchElementException("queue is empty");
 		return (T) elements[head];
