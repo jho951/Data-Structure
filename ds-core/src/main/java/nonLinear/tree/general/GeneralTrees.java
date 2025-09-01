@@ -89,6 +89,9 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 	@Override
 	public Position<T> root() { return root; }
 
+	/** 이 트리를 식별하는 전용 토큰. 노드 생성 시 주입하여 소유 관계를 검증한다. */
+	private final Object ownerToken = new Object();
+
 	/**
 	 * 루트 생성 (O(1))
 	 * - 이미 루트가 있으면 IllegalStateException
@@ -97,7 +100,7 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 	@Override
 	public Position<T> addRoot(T value) {
 		if (root != null) throw new IllegalStateException("루트가 이미 존재합니다.");
-		root = new GeneralNode<>(value, null);
+		root = new GeneralNode<>(value, null, ownerToken);
 		size = 1;
 		modCount++;
 		return root;
@@ -109,11 +112,12 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 	 * - 현재 구현은 value의 null을 허용합니다.
 	 * - 중복 값 허용(contains 검사 없음)
 	 */
+
 	@Override
 	public Position<T> addChild(Position<T> parent, T value) {
-		GeneralNode<T> p = cast(parent);                  // Position → 내부 노드로 검증/캐스팅
-		GeneralNode<T> child = new GeneralNode<>(value, p);
-		p.children.add(child);                            // ArrayList: 끝에 O(1) 삽입
+		GeneralNode<T> p = cast(parent); // 여기서 owner 검증 수행
+		GeneralNode<T> child = new GeneralNode<>(value, p, ownerToken);
+		p.children.add(child);
 		size++;
 		modCount++;
 		return child;
@@ -125,6 +129,7 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 		return cast(p).parent;
 	}
 
+
 	/**
 	 * p의 자식들 (읽기 전용 뷰) 반환 (O(1))
 	 * - 외부에서 children 목록을 변경할 수 없게 하기 위해 unmodifiableList 사용
@@ -132,7 +137,7 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 	 */
 	@Override
 	public Iterable<Position<T>> children(Position<T> p) {
-		return Collections.unmodifiableList(cast(p).children);
+		return java.util.Collections.unmodifiableList(cast(p).children);
 	}
 
 	/**
@@ -184,11 +189,14 @@ public class GeneralTrees<T> implements MyGeneralTree<T> {
 	 * - 현재는 단순히 instanceof로만 확인합니다.
 	 * - <b>개선 여지</b>: 서로 다른 트리의 Position 혼용 방지 위해 ownerId/removed 플래그 등을 GeneralNode에 두고 검증 가능
 	 */
-	@SuppressWarnings("unchecked")
 	private GeneralNode<T> cast(Position<T> p) {
-		if (!(p instanceof GeneralNode))
-			throw new IllegalArgumentException("잘못된 Position: 이 트리에서 생성된 Position이 아닙니다.");
-		return (GeneralNode<T>) p;
+		if (!(p instanceof GeneralNode<T> node))
+			throw new IllegalArgumentException("잘못된 Position: 이 구현의 노드가 아닙니다.");
+
+		// 🔒 핵심: 다른 트리의 Position 혼용 방지
+		if (node.ownerToken != this.ownerToken)
+			throw new IllegalArgumentException("잘못된 Position: 다른 트리에서 생성된 Position입니다.");
+		return node;
 	}
 
 	// ====== 순회(Iterable) ======

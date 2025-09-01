@@ -45,3 +45,5 @@ chmod +x gradlew
 
 # 3) 라이브러리를 로컬 저장소에 배포 → 다른 프로젝트에서 의존성으로 사용
 ./gradlew :ds-core:publishToMavenLocal
+
+## list , queue, stack, tree 
