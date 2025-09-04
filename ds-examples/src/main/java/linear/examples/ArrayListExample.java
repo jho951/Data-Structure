@@ -8,11 +8,8 @@ public class ArrayListExample {
 		MyList<Integer> testList = Lists.array();
 		testList.add(2);
 		testList.add(3);
-		for(int i : testList) {
-			System.out.print(i);
-			System.out.print(", ");
-		}
-		System.out.println();
+
+		System.out.println(testList);
 
 		testList.set(0,1);
 		for(int i : testList) {
