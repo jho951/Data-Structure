@@ -36,7 +36,6 @@ class LinkedDequeExTest {
 		assertThrows(NoSuchElementException.class, dq::pop);
 	}
 
-	// ---- 삽입/순서 ----
 	@DisplayName("addLast: FIFO 순서 보장")
 	@Test
 	void addLastOrder() {
