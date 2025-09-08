@@ -34,38 +34,37 @@ class ArrayListExTest {
 	 * <ul>
 	 *   <li>리스트 초기 상태 확인(isEmpty)</li>
 	 *   <li>append add, 중간 삽입 add(index, e)의 결과 인덱스 상태</li>
-	 *   <li>set이 <i>교체 전 값</i>을 반환하는지</li>
-	 *   <li>remove가 <i>제거된 값</i>을 반환하고 size가 줄어드는지</li>
-	 *   <li>clear 후 완전 비움 상태</li>
+	 *   <li>set  <i>교체 전 값</i>을 반환하는지</li>
+	 *   <li>remove <i>제거된 값</i>을 반환하고 size가 줄어드는지</li>
+	 *   <li>clear 완전 비움 상태</li>
 	 * </ul>
 	 */
 	@DisplayName("기본 연산: add / add(index) / get / set / remove / clear")
 	@Test
 	void addGetInsertSetRemoveClear() {
-		// Given: 비어있는 리스트
 		MyList<Integer> list = ArrayLists.arrayList();
-		assertTrue(list.isEmpty(), "초기에는 비어 있어야 함");
+		assertTrue(list.isEmpty(), "초기 빈 값");
 
-		// When: 맨 뒤에 1, 2 추가 후, 인덱스 1에 99 삽입 → [1, 99, 2]
+		// 삽입
 		list.add(1);
 		list.add(2);
 		list.add(1, 99);
 
-		// Then: 크기/순서 확인
+		// 크기와 순서 확인
 		assertEquals(3, list.size());
 		assertEquals(1, list.get(0));
 		assertEquals(99, list.get(1));
 		assertEquals(2, list.get(2));
 
-		// And: set은 교체 전 값을 반환하고, 새 값이 반영되어야 함 → [1, 100, 2]
+		// 교체 전 값을 반환하고, 새 값이 반영
 		assertEquals(99, list.set(1, 100));
 		assertEquals(100, list.get(1));
 
-		// And: remove는 제거한 값을 반환하고, 크기가 하나 줄어야 함 → [1, 2]
+		// 제거한 값을 반환하고, 크기를 하나로 줄임
 		assertEquals(100, list.remove(1));
 		assertEquals(2, list.size());
 
-		// And: clear는 모든 요소 제거
+		// 모든 요소 제거
 		list.clear();
 		assertTrue(list.isEmpty());
 	}
@@ -107,10 +106,10 @@ class ArrayListExTest {
 	 *   <li>ConcurrentModificationException이 즉시 터지는지 확인</li>
 	 * </ul>
 	 *
-	 * <p>설명: 반복자는 생성 시점의 수정 카운트(modCount)를 스냅샷으로 저장합니다.
+	 * <p>설명: 반복자는 생성 시점의 수정 카운트(modCount)를 저장합니다.
 	 * 순회 도중 add/remove로 modCount가 변경되면, 다음 next()에서 불일치를 감지해 예외가 납니다.</p>
 	 */
-	@DisplayName("반복자 fail-fast: 순회 중 구조 변경 감지")
+	@DisplayName("fail-fast 반복자 테스트: 순회 중 구조 변경 감지")
 	@Test
 	void iteratorFailFast() {
 		MyList<Integer> list = ArrayLists.arrayList();
@@ -119,7 +118,6 @@ class ArrayListExTest {
 
 		var it = list.iterator();
 		assertEquals(1, it.next()); // 첫 원소까지는 정상 순회
-
 		// 여기서 리스트 구조 변경 → 다음 next()에서 fail-fast 동작해야 함
 		list.add(3);
 
