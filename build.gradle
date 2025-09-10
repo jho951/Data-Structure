@@ -1,16 +1,15 @@
-allprojects {
-    repositories { mavenCentral() }
-}
+allprojects { repositories { mavenCentral() } }
 
 subprojects {
     group = 'io.github.jho951'
     version = '0.1.0'
 
-    // 각 모듈이 'java' 플러그인을 적용했을 때만 공통 세팅 주입
     plugins.withId('java') {
         java {
             toolchain { languageVersion = JavaLanguageVersion.of(17) }
         }
-        tasks.withType(Test).tap { configureEach { useJUnitPlatform() } }
+        tasks.withType(Test).configureEach {
+            useJUnitPlatform()
+        }
     }
 }

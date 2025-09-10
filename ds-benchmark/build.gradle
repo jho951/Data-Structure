@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'me.champeau.jmh' version '0.7.2'
+}
+
+dependencies {
+    implementation project(":ds-core")
+    jmh 'org.openjdk.jmh:jmh-core:1.37'
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+}
+
+jmh {
+    fork = 2
+    warmupIterations = 5
+    iterations = 10
+    resultFormat = 'JSON'
+}

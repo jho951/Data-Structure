@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ds-benchmark" />
             <option value="$PROJECT_DIR$/ds-core" />
             <option value="$PROJECT_DIR$/ds-examples" />
           </set>
